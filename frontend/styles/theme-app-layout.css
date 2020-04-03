@@ -1,0 +1,23 @@
+[part="navbar"]::before {
+  background: #fff !important;
+}
+
+[part="navbar"] {
+  background: #fff !important;
+  color: #495057 !important;
+  border-bottom: 1px solid #e5e9f2;
+}
+
+[part="drawer"]:before {
+  background: #354052 !important;
+}
+
+[part="drawer"] {
+  background: #354052 !important;
+  color: #ced4da !important;
+}
+
+:host {
+  background-color: #f5f9fc !important;
+  color: #495057 !important;
+}

@@ -1,10 +1,10 @@
 package com.nmn.em.back;
 
 import com.nmn.em.front.FrontUtils;
-import com.nmn.em.front.components.CustomNotification;
-import com.nmn.em.front.components.CustomNotification.NotificationType;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.Notification.Position;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
 import com.vaadin.flow.spring.annotation.SpringComponent;
@@ -17,13 +17,14 @@ public class CustomVaadinServiceInitListener implements VaadinServiceInitListene
 		event.addBootstrapListener(new CustomBootstrapListener());
 		event.getSource().addSessionInitListener(e -> {
 			e.getSession().setErrorHandler(error -> {
+				error.getThrowable().printStackTrace();
 				Throwable source = error.getThrowable();
 				while (source.getCause() != null) {
 					source = source.getCause();
 				}
-				source.printStackTrace();
-				CustomNotification.show(source.getMessage(), Position.MIDDLE, NotificationType.ERROR);
-				error.getThrowable().printStackTrace();
+				Notification notification = new Notification(source.getMessage(), 0, Position.MIDDLE);
+				notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+				notification.open();
 			});
 		});
 		event.getSource().addUIInitListener(e -> {

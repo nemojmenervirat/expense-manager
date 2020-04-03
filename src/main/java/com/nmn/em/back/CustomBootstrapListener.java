@@ -11,7 +11,7 @@ public class CustomBootstrapListener implements BootstrapListener {
 	public void modifyBootstrapPage(BootstrapPageResponse response) {
 		final Element head = response.getDocument().head();
 		head.append("<link rel='shortcut icon' href='icons/favicon.ico'>");
-//		head.append("<script type='module'>import './frontend/styles/bootstrap.js'; import './frontend/styles/shared-styles.js';</script>");
+		head.append("<link rel='icon' type='image/png' href='icons/icon.png' sizes='600x600'>");
 	}
 
 }
